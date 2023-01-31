@@ -4,10 +4,10 @@ namespace ToDo.Domain.Commands;
 
 public class GenericCommandResult : ICommandResult
 {
-	public GenericCommandResult() { }
+	public GenericCommandResult() : this(false) { }
 	public GenericCommandResult(bool success,
-							 string? message,
-							 object? data)
+							 string? message = null,
+							 object? data = null)
 	{
 		Success = success;
 		Message = message;
