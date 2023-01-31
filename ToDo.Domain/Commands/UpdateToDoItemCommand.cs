@@ -4,18 +4,21 @@ using ToDo.Domain.Commands.Contracts;
 
 namespace ToDo.Domain.Commands;
 
-public class CreateToDoItemCommand : Notifiable, ICommand
+public class UpdateToDoItemCommand : Notifiable, ICommand
 {
-	public CreateToDoItemCommand() { }
-	public CreateToDoItemCommand(string? user,
+	public UpdateToDoItemCommand() { }
+	public UpdateToDoItemCommand(Guid id,
+							  string? user,
 							  string? title,
 							  string? description)
 	{
+		Id = id;
 		User = user;
 		Title = title;
 		Description = description;
 	}
 
+	public Guid Id { get; set; }
 	public string? User { get; set; }
 	public string? Title { get; set; }
 	public string? Description { get; set; }
