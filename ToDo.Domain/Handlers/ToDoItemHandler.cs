@@ -10,7 +10,9 @@ namespace ToDo.Domain.Handlers;
 public class ToDoItemHandler :
 	Notifiable,
 	IHandler<CreateToDoItemCommand>,
-	IHandler<UpdateToDoItemCommand>
+	IHandler<UpdateToDoItemCommand>,
+	IHandler<CompleteToDoItemCommand>,
+	IHandler<UndoCompleteToDoItemCommand>
 {
 	private readonly IToDoItemRepository _toDoItemRepository;
 
@@ -45,6 +47,46 @@ public class ToDoItemHandler :
 		{
 			ToDoItem toDoItem = _toDoItemRepository.Get(command.Id);
 			toDoItem.Update(command.Title, command.Description);
+
+			_toDoItemRepository.Update(toDoItem);
+
+			result = new GenericCommandResult(success: true, data: toDoItem);
+		}
+
+		return result;
+	}
+
+	public ICommandResult Handle(CompleteToDoItemCommand command)
+	{
+		command.Validate();
+		AddNotifications(command);
+
+		ICommandResult result = new GenericCommandResult(success: Valid, data: Notifications);
+
+		if (Valid)
+		{
+			ToDoItem toDoItem = _toDoItemRepository.Get(command.Id);
+			toDoItem.Complete();
+
+			_toDoItemRepository.Update(toDoItem);
+
+			result = new GenericCommandResult(success: true, data: toDoItem);
+		}
+
+		return result;
+	}
+
+	public ICommandResult Handle(UndoCompleteToDoItemCommand command)
+	{
+		command.Validate();
+		AddNotifications(command);
+
+		ICommandResult result = new GenericCommandResult(success: Valid, data: Notifications);
+
+		if (Valid)
+		{
+			ToDoItem toDoItem = _toDoItemRepository.Get(command.Id);
+			toDoItem.Undo();
 
 			_toDoItemRepository.Update(toDoItem);
 
