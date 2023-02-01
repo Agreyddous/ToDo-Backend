@@ -1,3 +1,6 @@
 namespace ToDo.Domain.Commands.Contracts;
 
-public interface ICommandResult { }
+public interface ICommandResult
+{
+	bool Success { get; }
+}
