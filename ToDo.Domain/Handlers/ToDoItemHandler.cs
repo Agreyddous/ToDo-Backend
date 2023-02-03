@@ -7,6 +7,9 @@ using ToDo.Domain.Repositories;
 
 namespace ToDo.Domain.Handlers;
 
+/// <summary>
+/// Handler for To-Do Item related commands
+/// </summary>
 public class ToDoItemHandler :
 	Notifiable,
 	IHandler<CreateToDoItemCommand>,
@@ -18,6 +21,11 @@ public class ToDoItemHandler :
 
 	public ToDoItemHandler(IToDoItemRepository toDoItemRepository) => _toDoItemRepository = toDoItemRepository;
 
+	/// <summary>
+	/// Handle creation of new To-Do Items
+	/// </summary>
+	/// <param name="command">Command with required data for creating new To-Do Item</param>
+	/// <returns>Generic Command Result</returns>
 	public ICommandResult Handle(CreateToDoItemCommand command)
 	{
 		command.Validate();
@@ -36,6 +44,11 @@ public class ToDoItemHandler :
 		return result;
 	}
 
+	/// <summary>
+	/// Handle updating an existing To-Do Item
+	/// </summary>
+	/// <param name="command">Command with required data for updating existing To-Do Item</param>
+	/// <returns>Generic Command Result</returns>
 	public ICommandResult Handle(UpdateToDoItemCommand command)
 	{
 		command.Validate();
@@ -56,6 +69,11 @@ public class ToDoItemHandler :
 		return result;
 	}
 
+	/// <summary>
+	/// Handle setting a To-Do Item as complete
+	/// </summary>
+	/// <param name="command">Command with required data for identifying the To-Do Item to be completed</param>
+	/// <returns>Generic Command Result</returns>
 	public ICommandResult Handle(CompleteToDoItemCommand command)
 	{
 		command.Validate();
@@ -76,6 +94,11 @@ public class ToDoItemHandler :
 		return result;
 	}
 
+	/// <summary>
+	/// Handle setting a completed To-Do Item as incomplete
+	/// </summary>
+	/// <param name="command">Command with required data for identifying the To-Do Item to be set as incomplete</param>
+	/// <returns>Generic Command Result</returns>
 	public ICommandResult Handle(UndoCompleteToDoItemCommand command)
 	{
 		command.Validate();

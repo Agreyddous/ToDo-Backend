@@ -23,6 +23,9 @@ public class ToDoItem : Entity
 	public DateTime LastUpdatedAt { get; private set; }
 	public DateTime? CompletedAt { get; private set; }
 
+	/// <summary>
+	/// Update To-Do Item to be completed
+	/// </summary>
 	public void Complete()
 	{
 		IsComplete = true;
@@ -31,6 +34,9 @@ public class ToDoItem : Entity
 		_updated();
 	}
 
+	/// <summary>
+	/// Update To-Do Item to be uncompleted
+	/// </summary>
 	public void Undo()
 	{
 		IsComplete = false;
@@ -39,6 +45,11 @@ public class ToDoItem : Entity
 		_updated();
 	}
 
+	/// <summary>
+	/// Update title and/or description of the To-Do Item
+	/// </summary>
+	/// <param name="title">New title - Value won't be changed if null is provided</param>
+	/// <param name="description">New description - Value won't be changed if null is provided</param>
 	public void Update(string? title, string? description)
 	{
 		Title = title ?? Title;
