@@ -30,5 +30,10 @@ public class FakeToDoItemRepository : IToDoItemRepository
 		throw new NotImplementedException();
 	}
 
+	public IEnumerable<ToDoItem> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null)
+	{
+		throw new NotImplementedException();
+	}
+
 	public void Update(ToDoItem toDoItem) { }
 }

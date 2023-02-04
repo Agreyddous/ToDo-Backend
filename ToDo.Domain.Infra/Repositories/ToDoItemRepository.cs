@@ -45,6 +45,10 @@ public class ToDoItemRepository : IToDoItemRepository
 																										   .Where(ToDoItemQueries.GetCreatedBetween(user, startDate, endDate))
 																										   .OrderBy(ToDoItemOrdering.CreateDate);
 
+	public IEnumerable<ToDoItem> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null) => Table.AsNoTracking()
+																																		.Where(ToDoItemQueries.GetLastUpdatedBetween(user, startDate, endDate, isComplete))
+																																		.OrderBy(ToDoItemOrdering.LastUpdate);
+
 	public void Update(ToDoItem toDoItem)
 	{
 		Table.Update(toDoItem);

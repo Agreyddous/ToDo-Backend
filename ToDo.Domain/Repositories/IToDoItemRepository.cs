@@ -52,4 +52,13 @@ public interface IToDoItemRepository
 	/// <param name="startDate">Start of the searching period</param>
 	/// <param name="endDate">End of the searching period</param>
 	IEnumerable<ToDoItem> GetCreatedBetween(string user, DateTime startDate, DateTime endDate);
+
+	/// <summary>
+	/// Returns all To-Do Items of a certain user last updated between the provided Start and End dates
+	/// </summary>
+	/// <param name="user">User reference</param>
+	/// <param name="startDate">Start of the searching period</param>
+	/// <param name="endDate">End of the searching period</param>
+	/// <param name="isComplete">Optional flag to filter</param>
+	IEnumerable<ToDoItem> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null);
 }
