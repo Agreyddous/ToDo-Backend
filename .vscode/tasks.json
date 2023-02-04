@@ -7,7 +7,7 @@
 			"type": "process",
 			"args": [
 				"build",
-				"${workspaceFolder}/ToDo.Domain.API/ToDo.Domain.API.csproj",
+				"${workspaceFolder}/ToDo.API/ToDo.API.csproj",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary"
 			],
@@ -19,7 +19,7 @@
 			"type": "process",
 			"args": [
 				"publish",
-				"${workspaceFolder}/ToDo.Domain.API/ToDo.Domain.API.csproj",
+				"${workspaceFolder}/ToDo.API/ToDo.API.csproj",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary"
 			],
@@ -33,7 +33,7 @@
 				"watch",
 				"run",
 				"--project",
-				"${workspaceFolder}/ToDo.Domain.API/ToDo.Domain.API.csproj"
+				"${workspaceFolder}/ToDo.API/ToDo.API.csproj"
 			],
 			"problemMatcher": "$msCompile"
 		}

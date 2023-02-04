@@ -5,7 +5,7 @@ using ToDo.Domain.Entities;
 using ToDo.Domain.Handlers;
 using ToDo.Domain.Repositories;
 
-namespace ToDo.Api.Controllers;
+namespace ToDo.API.Controllers;
 
 [ApiController]
 [Route("v1/ToDoItems")]
