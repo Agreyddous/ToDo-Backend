@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ToDo.Domain.Handlers;
 using ToDo.Domain.Infra.Contexts;
 using ToDo.Domain.Infra.Repositories;
@@ -22,6 +24,20 @@ builder.Services.AddTransient<ToDoItemHandler>();
 
 // Inject Repositories
 builder.Services.AddTransient<IToDoItemRepository, ToDoItemRepository>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+				.AddJwtBearer(options =>
+				{
+					options.Authority = "https://securetoken.google.com/todo-90757";
+					options.TokenValidationParameters = new TokenValidationParameters
+					{
+						ValidateIssuer = true,
+						ValidIssuer = "https://securetoken.google.com/todo-90757",
+						ValidateAudience = true,
+						ValidAudience = "todo-90757",
+						ValidateLifetime = true
+					};
+				});
 
 WebApplication app = builder.Build();
 
