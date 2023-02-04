@@ -58,7 +58,7 @@ public class ToDoItemHandler :
 
 		if (Valid)
 		{
-			ToDoItem? toDoItem = _toDoItemRepository.Get(command.Id);
+			ToDoItem? toDoItem = _toDoItemRepository.Get(command.User!, command.Id);
 
 			if (toDoItem != null)
 			{
@@ -90,7 +90,7 @@ public class ToDoItemHandler :
 
 		if (Valid)
 		{
-			ToDoItem? toDoItem = _toDoItemRepository.Get(command.Id);
+			ToDoItem? toDoItem = _toDoItemRepository.Get(command.User!, command.Id);
 
 			if (toDoItem != null)
 			{
@@ -122,7 +122,7 @@ public class ToDoItemHandler :
 
 		if (Valid)
 		{
-			ToDoItem? toDoItem = _toDoItemRepository.Get(command.Id);
+			ToDoItem? toDoItem = _toDoItemRepository.Get(command.User!, command.Id);
 
 			if (toDoItem != null)
 			{
