@@ -10,5 +10,6 @@ public class ToDoItemTests
 	[TestCategory("Constructor")]
 	public void NewToDoItemShouldBeIncomplete() => Assert.IsFalse(ToDoItem.IsComplete);
 
-	internal static ToDoItem ToDoItem => new ToDoItem(string.Empty, string.Empty, string.Empty);
+	internal static ToDoItem ToDoItem => NewToDoItem(string.Empty, string.Empty, string.Empty);
+	internal static ToDoItem NewToDoItem(string user, string title, string description) => new ToDoItem(user, title, description);
 }
