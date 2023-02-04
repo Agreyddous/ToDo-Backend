@@ -8,7 +8,27 @@ public class FakeToDoItemRepository : IToDoItemRepository
 {
 	public void Create(ToDoItem toDoItem) { }
 
-	public ToDoItem Get(Guid id) => ToDoItemTests.ToDoItem;
+	public ToDoItem Get(string user, Guid id) => ToDoItemTests.ToDoItem;
+
+	public IEnumerable<ToDoItem> GetAll(string user)
+	{
+		throw new NotImplementedException();
+	}
+
+	public IEnumerable<ToDoItem> GetAllComplete(string user)
+	{
+		throw new NotImplementedException();
+	}
+
+	public IEnumerable<ToDoItem> GetAllIncomplete(string user)
+	{
+		throw new NotImplementedException();
+	}
+
+	public IEnumerable<ToDoItem> GetCreatedBetween(string user, DateTime startDate, DateTime endDate)
+	{
+		throw new NotImplementedException();
+	}
 
 	public void Update(ToDoItem toDoItem) { }
 }
