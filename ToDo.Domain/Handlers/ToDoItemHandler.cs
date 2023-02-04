@@ -58,12 +58,19 @@ public class ToDoItemHandler :
 
 		if (Valid)
 		{
-			ToDoItem toDoItem = _toDoItemRepository.Get(command.Id);
-			toDoItem.Update(command.Title, command.Description);
+			ToDoItem? toDoItem = _toDoItemRepository.Get(command.Id);
 
-			_toDoItemRepository.Update(toDoItem);
+			if (toDoItem != null)
+			{
+				toDoItem.Update(command.Title, command.Description);
 
-			result = new GenericCommandResult(success: true, data: toDoItem);
+				_toDoItemRepository.Update(toDoItem);
+
+				result = new GenericCommandResult(success: true, data: toDoItem);
+			}
+
+			else
+				result = new GenericCommandResult(success: false, message: "To-Do Item not found");
 		}
 
 		return result;
@@ -83,12 +90,19 @@ public class ToDoItemHandler :
 
 		if (Valid)
 		{
-			ToDoItem toDoItem = _toDoItemRepository.Get(command.Id);
-			toDoItem.Complete();
+			ToDoItem? toDoItem = _toDoItemRepository.Get(command.Id);
 
-			_toDoItemRepository.Update(toDoItem);
+			if (toDoItem != null)
+			{
+				toDoItem.Complete();
 
-			result = new GenericCommandResult(success: true, data: toDoItem);
+				_toDoItemRepository.Update(toDoItem);
+
+				result = new GenericCommandResult(success: true, data: toDoItem);
+			}
+
+			else
+				result = new GenericCommandResult(success: false, message: "To-Do Item not found");
 		}
 
 		return result;
@@ -108,12 +122,19 @@ public class ToDoItemHandler :
 
 		if (Valid)
 		{
-			ToDoItem toDoItem = _toDoItemRepository.Get(command.Id);
-			toDoItem.Undo();
+			ToDoItem? toDoItem = _toDoItemRepository.Get(command.Id);
 
-			_toDoItemRepository.Update(toDoItem);
+			if (toDoItem != null)
+			{
+				toDoItem.Undo();
 
-			result = new GenericCommandResult(success: true, data: toDoItem);
+				_toDoItemRepository.Update(toDoItem);
+
+				result = new GenericCommandResult(success: true, data: toDoItem);
+			}
+
+			else
+				result = new GenericCommandResult(success: false, message: "To-Do Item not found");
 		}
 
 		return result;
