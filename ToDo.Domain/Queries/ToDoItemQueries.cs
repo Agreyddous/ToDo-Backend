@@ -6,25 +6,33 @@ namespace ToDo.Domain.Queries;
 public static class ToDoItemQueries
 {
 	/// <summary>
+	/// Retrieve a To-Do Item by it's Id
+	/// </summary>
+	/// <param name="user">User reference</param>
+	/// <param name="id">Unique Identifier corresponding to an existing To-Do Item</param>
+	/// <returns></returns>
+	public static Expression<Func<ToDoItem, bool>> Get(string user, Guid id) => toDoItem => toDoItem.Id == id && toDoItem.User == user;
+
+	/// <summary>
 	/// Returns all To-Do Items of a certain user
 	/// </summary>
 	/// <param name="user">User reference</param>
 	/// <returns></returns>
-	public static Expression<Func<ToDoItem, bool>> GetAll(string user) => toDoItems => toDoItems.User == user;
+	public static Expression<Func<ToDoItem, bool>> GetAll(string user) => toDoItem => toDoItem.User == user;
 
 	/// <summary>
 	/// Returns all completed To-Do Items of a certain user
 	/// </summary>
 	/// <param name="user">User reference</param>
 	/// <returns></returns>
-	public static Expression<Func<ToDoItem, bool>> GetAllComplete(string user) => toDoItems => toDoItems.User == user && toDoItems.IsComplete;
+	public static Expression<Func<ToDoItem, bool>> GetAllComplete(string user) => toDoItem => toDoItem.User == user && toDoItem.IsComplete;
 
 	/// <summary>
 	/// Returns all incomplete To-Do Items of a certain user
 	/// </summary>
 	/// <param name="user">User reference</param>
 	/// <returns></returns>
-	public static Expression<Func<ToDoItem, bool>> GetAllIncomplete(string user) => toDoItems => toDoItems.User == user && !toDoItems.IsComplete;
+	public static Expression<Func<ToDoItem, bool>> GetAllIncomplete(string user) => toDoItem => toDoItem.User == user && !toDoItem.IsComplete;
 
 	/// <summary>
 	/// Returns all To-Do Items of a certain user created between the provided Start and End dates
@@ -33,5 +41,5 @@ public static class ToDoItemQueries
 	/// <param name="startDate">Start of the searching period</param>
 	/// <param name="endDate">End of the searching period</param>
 	/// <returns></returns>
-	public static Expression<Func<ToDoItem, bool>> GetCreatedBetween(string user, DateTime startDate, DateTime endDate) => todoItems => todoItems.User == user && todoItems.CreatedAt >= startDate && todoItems.CreatedAt <= endDate;
+	public static Expression<Func<ToDoItem, bool>> GetCreatedBetween(string user, DateTime startDate, DateTime endDate) => todoItem => todoItem.User == user && todoItem.CreatedAt >= startDate && todoItem.CreatedAt <= endDate;
 }
