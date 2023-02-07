@@ -33,7 +33,8 @@ public class CreateToDoItemCommandTests
 												  string? title = null,
 												  string? description = null)
 	{
-		CreateToDoItemCommand command = new CreateToDoItemCommand(user, title, description);
+		CreateToDoItemCommand command = new CreateToDoItemCommand(title, description);
+		command.SetUser(user);
 		command.Validate();
 
 		return command;
