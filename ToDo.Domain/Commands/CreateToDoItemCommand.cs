@@ -10,11 +10,9 @@ namespace ToDo.Domain.Commands;
 public class CreateToDoItemCommand : Notifiable, ICommand
 {
 	public CreateToDoItemCommand() { }
-	public CreateToDoItemCommand(string? user,
-							  string? title,
+	public CreateToDoItemCommand(string? title,
 							  string? description)
 	{
-		User = user;
 		Title = title;
 		Description = description;
 	}
@@ -22,7 +20,7 @@ public class CreateToDoItemCommand : Notifiable, ICommand
 	/// <summary>
 	/// Owning user
 	/// </summary>
-	public string? User { get; set; }
+	internal string? User { get; private set; }
 
 	/// <summary>
 	/// Title of the To-Do Item
@@ -33,6 +31,8 @@ public class CreateToDoItemCommand : Notifiable, ICommand
 	/// Description of the To-Do Item
 	/// </summary>
 	public string? Description { get; set; }
+
+	public void SetUser(string? user) => User = user;
 
 	public void Validate() => AddNotifications(new Contract().Requires()
 														  .HasMinLen(User, 6, nameof(User), "is invalid")

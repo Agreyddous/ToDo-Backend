@@ -9,7 +9,6 @@ namespace ToDo.Domain.Commands;
 /// </summary>
 public class UndoCompleteToDoItemCommand : Notifiable, ICommand
 {
-	public UndoCompleteToDoItemCommand() { }
 	public UndoCompleteToDoItemCommand(Guid id, string user)
 	{
 		Id = id;
@@ -19,12 +18,12 @@ public class UndoCompleteToDoItemCommand : Notifiable, ICommand
 	/// <summary>
 	/// Unique Idenfitier corresponding to an existing To-Do Item
 	/// </summary>
-	public Guid Id { get; set; }
+	internal Guid Id { get; private set; }
 
 	/// <summary>
 	/// Owning user
 	/// </summary>
-	public string? User { get; set; }
+	internal string? User { get; private set; }
 
 	public void Validate() => AddNotifications(new Contract().Requires()
 														  .HasMinLen(User, 6, nameof(User), "is invalid"));
