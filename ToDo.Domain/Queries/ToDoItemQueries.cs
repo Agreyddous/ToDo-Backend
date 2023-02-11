@@ -22,6 +22,19 @@ public static class ToDoItemQueries
 	public static Expression<Func<ToDoItem, bool>> GetAll(string user) => toDoItem => toDoItem.User == user;
 
 	/// <summary>
+	/// Returns all To-Do Items of a certain user that are due between the provided Start and End dates
+	/// </summary>
+	/// <param name="user">User reference</param>
+	/// <param name="startDate">Start of the searching period</param>
+	/// <param name="endDate">End of the searching period</param>
+	/// <param name="isComplete">Optional flag to filter</param>
+	/// <returns></returns>
+	public static Expression<Func<ToDoItem, bool>> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null) => toDoItem => toDoItem.User == user
+																																							&& toDoItem.DueDate >= startDate
+																																							&& toDoItem.DueDate <= endDate
+																																							&& toDoItem.IsComplete == (isComplete ?? toDoItem.IsComplete);
+
+	/// <summary>
 	/// Returns all completed To-Do Items of a certain user
 	/// </summary>
 	/// <param name="user">User reference</param>
@@ -44,9 +57,9 @@ public static class ToDoItemQueries
 	/// <param name="startDate">Start of the searching period</param>
 	/// <param name="endDate">End of the searching period</param>
 	/// <returns></returns>
-	public static Expression<Func<ToDoItem, bool>> GetCreatedBetween(string user, DateTime startDate, DateTime endDate) => todoItem => todoItem.User == user
-																																	&& todoItem.CreatedAt >= startDate
-																																	&& todoItem.CreatedAt <= endDate;
+	public static Expression<Func<ToDoItem, bool>> GetCreatedBetween(string user, DateTime startDate, DateTime endDate) => toDoItem => toDoItem.User == user
+																																	&& toDoItem.CreatedAt >= startDate
+																																	&& toDoItem.CreatedAt <= endDate;
 
 	/// <summary>
 	/// Returns all To-Do Items of a certain user last updated between the provided Start and End dates
@@ -56,8 +69,8 @@ public static class ToDoItemQueries
 	/// <param name="endDate">End of the searching period</param>
 	/// <param name="isComplete">Optional flag to filter</param>
 	/// <returns></returns>
-	public static Expression<Func<ToDoItem, bool>> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null) => todoItem => todoItem.User == user
-																																								 && todoItem.LastUpdatedAt >= startDate
-																																								 && todoItem.LastUpdatedAt <= endDate
-																																								 && todoItem.IsComplete == (isComplete ?? todoItem.IsComplete);
+	public static Expression<Func<ToDoItem, bool>> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null) => toDoItem => toDoItem.User == user
+																																								 && toDoItem.LastUpdatedAt >= startDate
+																																								 && toDoItem.LastUpdatedAt <= endDate
+																																								 && toDoItem.IsComplete == (isComplete ?? toDoItem.IsComplete);
 }
