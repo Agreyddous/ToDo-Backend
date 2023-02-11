@@ -17,6 +17,7 @@ public class ToDoItemConfiguration : IEntityTypeConfiguration<ToDoItem>
 		builder.Property(toDoItem => toDoItem.User).IsRequired().HasMaxLength(120);
 		builder.Property(toDoItem => toDoItem.Title).IsRequired();
 		builder.Property(toDoItem => toDoItem.Description).IsRequired();
+		builder.Property(toDoItem => toDoItem.DueDate).IsRequired();
 		builder.Property(toDoItem => toDoItem.IsComplete).IsRequired();
 		builder.Property(toDoItem => toDoItem.CreatedAt).IsRequired();
 		builder.Property(toDoItem => toDoItem.LastUpdatedAt).IsRequired();
