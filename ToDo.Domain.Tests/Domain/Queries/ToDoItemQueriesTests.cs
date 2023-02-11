@@ -22,7 +22,7 @@ public class ToDoItemQueriesTests
 			_users.Add(user);
 
 			for (int itemIndex = 0; itemIndex < 5; itemIndex++)
-				_items.Add(ToDoItemTests.NewToDoItem(user, itemIndex.ToString(), itemIndex.ToString()));
+				_items.Add(ToDoItemTests.NewToDoItem(user, itemIndex.ToString(), itemIndex.ToString(), DateTime.UtcNow));
 		}
 	}
 
