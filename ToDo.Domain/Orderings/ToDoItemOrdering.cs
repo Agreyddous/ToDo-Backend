@@ -14,4 +14,9 @@ public static class ToDoItemOrdering
 	/// Ordering to-do items by last update's date
 	/// </summary>
 	public static Expression<Func<ToDoItem, DateTime>> LastUpdate => toDoItems => toDoItems.LastUpdatedAt;
+
+	/// <summary>
+	/// Ordering to-do items by due date
+	/// </summary>
+	public static Expression<Func<ToDoItem, DateTime>> DueDate => toDoItems => toDoItems.DueDate;
 }
