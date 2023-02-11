@@ -11,10 +11,12 @@ public class CreateToDoItemCommand : Notifiable, ICommand
 {
 	public CreateToDoItemCommand() { }
 	public CreateToDoItemCommand(string? title,
-							  string? description)
+							  string? description,
+							  DateTime? dueDate)
 	{
 		Title = title;
 		Description = description;
+		DueDate = dueDate;
 	}
 
 	/// <summary>
@@ -32,10 +34,16 @@ public class CreateToDoItemCommand : Notifiable, ICommand
 	/// </summary>
 	public string? Description { get; set; }
 
+	/// <summary>
+	/// When the To-Do Item is due
+	/// </summary>
+	public DateTime? DueDate { get; set; }
+
 	public void SetUser(string? user) => User = user;
 
 	public void Validate() => AddNotifications(new Contract().Requires()
 														  .HasMinLen(User, 6, nameof(User), "is invalid")
 														  .HasMinLen(Title, 3, nameof(Title), "is too short")
-														  .HasMinLen(Description, 3, nameof(Description), "is too short"));
+														  .HasMinLen(Description, 3, nameof(Description), "is too short")
+														  .IsGreaterThan(DueDate ?? DateTime.MinValue, DateTime.UtcNow, nameof(DueDate), "can't be in the past"));
 }

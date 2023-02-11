@@ -37,11 +37,17 @@ public class UpdateToDoItemCommand : Notifiable, ICommand
 	/// </summary>
 	public string? Description { get; set; }
 
+	/// <summary>
+	/// When the To-Do Item is due
+	/// </summary>
+	public DateTime? DueDate { get; set; }
+
 	public void SetUser(string? user) => User = user;
 	public void SetId(Guid id) => Id = id;
 
 	public void Validate() => AddNotifications(new Contract().Requires()
 														  .HasMinLen(User, 6, nameof(User), "is invalid")
 														  .HasMinLen(Title, 3, nameof(Title), "is too short")
-														  .HasMinLen(Description, 3, nameof(Description), "is too short"));
+														  .HasMinLen(Description, 3, nameof(Description), "is too short")
+														  .IsGreaterThan(DueDate ?? DateTime.MinValue, DateTime.UtcNow, nameof(DueDate), "can't be in the past"));
 }

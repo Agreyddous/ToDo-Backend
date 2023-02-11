@@ -35,7 +35,7 @@ public class ToDoItemHandler :
 
 		if (Valid)
 		{
-			ToDoItem toDoItem = new ToDoItem(command.User!, command.Title!, command.Description!);
+			ToDoItem toDoItem = new ToDoItem(command.User!, command.Title!, command.Description!, command.DueDate!.Value);
 			_toDoItemRepository.Create(toDoItem);
 
 			result = new GenericCommandResult(success: true, data: toDoItem);
@@ -62,7 +62,7 @@ public class ToDoItemHandler :
 
 			if (toDoItem != null)
 			{
-				toDoItem.Update(command.Title, command.Description);
+				toDoItem.Update(command.Title, command.Description, command.DueDate);
 
 				_toDoItemRepository.Update(toDoItem);
 
