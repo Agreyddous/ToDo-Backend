@@ -4,11 +4,13 @@ public class ToDoItem : Entity
 {
 	public ToDoItem(string user,
 			 string title,
-			 string description)
+			 string description,
+			 DateTime dueDate)
 	{
 		User = user;
 		Title = title;
 		Description = description;
+		DueDate = dueDate;
 
 		IsComplete = false;
 		CreatedAt = DateTime.UtcNow;
@@ -18,6 +20,7 @@ public class ToDoItem : Entity
 	public string User { get; private set; }
 	public string Title { get; private set; }
 	public string Description { get; private set; }
+	public DateTime DueDate { get; private set; }
 	public bool IsComplete { get; private set; }
 	public DateTime CreatedAt { get; private set; }
 	public DateTime LastUpdatedAt { get; private set; }
@@ -50,10 +53,11 @@ public class ToDoItem : Entity
 	/// </summary>
 	/// <param name="title">New title - Value won't be changed if null is provided</param>
 	/// <param name="description">New description - Value won't be changed if null is provided</param>
-	public void Update(string? title, string? description)
+	public void Update(string? title, string? description, DateTime? dueDate)
 	{
 		Title = title ?? Title;
 		Description = description ?? Description;
+		DueDate = dueDate ?? DueDate;
 
 		_updated();
 	}
