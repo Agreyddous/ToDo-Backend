@@ -33,6 +33,10 @@ public class ToDoItemRepository : IToDoItemRepository
 														  .Where(ToDoItemQueries.GetAll(user))
 														  .OrderBy(ToDoItemOrdering.LastUpdate);
 
+	public IEnumerable<ToDoItem> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null) => Table.AsNoTracking()
+																																   .Where(ToDoItemQueries.GetAllDueBetween(user, startDate, endDate, isComplete))
+																																   .OrderBy(ToDoItemOrdering.LastUpdate);
+
 	public IEnumerable<ToDoItem> GetAllComplete(string user) => Table.AsNoTracking()
 																  .Where(ToDoItemQueries.GetAllComplete(user))
 																  .OrderBy(ToDoItemOrdering.LastUpdate);
