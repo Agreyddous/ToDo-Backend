@@ -20,7 +20,7 @@ public class FakeToDoItemRepository : IToDoItemRepository
 		throw new NotImplementedException();
 	}
 
-	public IEnumerable<ToDoItem> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null)
+	public IEnumerable<ToDoItem> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null, bool? isHidden = null)
 	{
 		throw new NotImplementedException();
 	}
@@ -35,7 +35,7 @@ public class FakeToDoItemRepository : IToDoItemRepository
 		throw new NotImplementedException();
 	}
 
-	public IEnumerable<ToDoItem> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null)
+	public IEnumerable<ToDoItem> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null, bool? isHidden = null)
 	{
 		throw new NotImplementedException();
 	}

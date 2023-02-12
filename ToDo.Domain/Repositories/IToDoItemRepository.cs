@@ -40,7 +40,8 @@ public interface IToDoItemRepository
 	/// <param name="startDate">Start of the searching period</param>
 	/// <param name="endDate">End of the searching period</param>
 	/// <param name="isComplete">Optional flag to filter</param>
-	IEnumerable<ToDoItem> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null);
+	/// <param name="isHidden">Optional flag to filter</param>
+	IEnumerable<ToDoItem> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null, bool? isHidden = null);
 
 	/// <summary>
 	/// Returns all completed To-Do Items of a certain user
@@ -69,5 +70,6 @@ public interface IToDoItemRepository
 	/// <param name="startDate">Start of the searching period</param>
 	/// <param name="endDate">End of the searching period</param>
 	/// <param name="isComplete">Optional flag to filter</param>
-	IEnumerable<ToDoItem> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null);
+	/// <param name="isHidden">Optional flag to filter</param>
+	IEnumerable<ToDoItem> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null, bool? isHidden = null);
 }

@@ -33,9 +33,9 @@ public class ToDoItemRepository : IToDoItemRepository
 														  .Where(ToDoItemQueries.GetAll(user))
 														  .OrderByDescending(ToDoItemOrdering.LastUpdate);
 
-	public IEnumerable<ToDoItem> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null) => Table.AsNoTracking()
-																																   .Where(ToDoItemQueries.GetAllDueBetween(user, startDate, endDate, isComplete))
-																																   .OrderByDescending(ToDoItemOrdering.LastUpdate);
+	public IEnumerable<ToDoItem> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null, bool? isHidden = null) => Table.AsNoTracking()
+																																						  .Where(ToDoItemQueries.GetAllDueBetween(user, startDate, endDate, isComplete, isHidden))
+																																						  .OrderByDescending(ToDoItemOrdering.LastUpdate);
 
 	public IEnumerable<ToDoItem> GetAllComplete(string user) => Table.AsNoTracking()
 																  .Where(ToDoItemQueries.GetAllComplete(user))
@@ -49,9 +49,9 @@ public class ToDoItemRepository : IToDoItemRepository
 																										   .Where(ToDoItemQueries.GetCreatedBetween(user, startDate, endDate))
 																										   .OrderByDescending(ToDoItemOrdering.CreateDate);
 
-	public IEnumerable<ToDoItem> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null) => Table.AsNoTracking()
-																																		.Where(ToDoItemQueries.GetLastUpdatedBetween(user, startDate, endDate, isComplete))
-																																		.OrderByDescending(ToDoItemOrdering.LastUpdate);
+	public IEnumerable<ToDoItem> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null, bool? isHidden = null) => Table.AsNoTracking()
+																																							   .Where(ToDoItemQueries.GetLastUpdatedBetween(user, startDate, endDate, isComplete, isHidden))
+																																							   .OrderByDescending(ToDoItemOrdering.LastUpdate);
 
 	public void Update(ToDoItem toDoItem)
 	{
