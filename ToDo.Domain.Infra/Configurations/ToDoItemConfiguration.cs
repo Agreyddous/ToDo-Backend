@@ -19,6 +19,7 @@ public class ToDoItemConfiguration : IEntityTypeConfiguration<ToDoItem>
 		builder.Property(toDoItem => toDoItem.Description).IsRequired();
 		builder.Property(toDoItem => toDoItem.DueDate).IsRequired();
 		builder.Property(toDoItem => toDoItem.IsComplete).IsRequired();
+		builder.Property(toDoItem => toDoItem.IsHidden).IsRequired();
 		builder.Property(toDoItem => toDoItem.CreatedAt).IsRequired();
 		builder.Property(toDoItem => toDoItem.LastUpdatedAt).IsRequired();
 		builder.Property(toDoItem => toDoItem.CompletedAt);

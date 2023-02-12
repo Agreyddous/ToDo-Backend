@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDo.Domain.Infra.Contexts;
 
@@ -11,9 +12,11 @@ using ToDo.Domain.Infra.Contexts;
 namespace ToDo.Domain.Infra.Migrations
 {
     [DbContext(typeof(ToDoDataContext))]
-    partial class ToDoDataContextModelSnapshot : ModelSnapshot
+    [Migration("20230212152259_AddingIsHiddenFlag")]
+    partial class AddingIsHiddenFlag
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
