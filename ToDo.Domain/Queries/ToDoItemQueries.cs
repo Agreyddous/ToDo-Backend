@@ -28,11 +28,13 @@ public static class ToDoItemQueries
 	/// <param name="startDate">Start of the searching period</param>
 	/// <param name="endDate">End of the searching period</param>
 	/// <param name="isComplete">Optional flag to filter</param>
+	/// <param name="isHidden">Optional flag to filter</param>
 	/// <returns></returns>
-	public static Expression<Func<ToDoItem, bool>> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null) => toDoItem => toDoItem.User == user
+	public static Expression<Func<ToDoItem, bool>> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null, bool? isHidden = null) => toDoItem => toDoItem.User == user
 																																							&& toDoItem.DueDate >= startDate
 																																							&& toDoItem.DueDate <= endDate
-																																							&& toDoItem.IsComplete == (isComplete ?? toDoItem.IsComplete);
+																																							&& toDoItem.IsComplete == (isComplete ?? toDoItem.IsComplete)
+																																							&& toDoItem.IsHidden == (isHidden ?? toDoItem.IsHidden);
 
 	/// <summary>
 	/// Returns all completed To-Do Items of a certain user
@@ -68,9 +70,11 @@ public static class ToDoItemQueries
 	/// <param name="startDate">Start of the searching period</param>
 	/// <param name="endDate">End of the searching period</param>
 	/// <param name="isComplete">Optional flag to filter</param>
+	/// <param name="isHidden">Optional flag to filter</param>
 	/// <returns></returns>
-	public static Expression<Func<ToDoItem, bool>> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null) => toDoItem => toDoItem.User == user
+	public static Expression<Func<ToDoItem, bool>> GetLastUpdatedBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null, bool? isHidden = null) => toDoItem => toDoItem.User == user
 																																								 && toDoItem.LastUpdatedAt >= startDate
 																																								 && toDoItem.LastUpdatedAt <= endDate
-																																								 && toDoItem.IsComplete == (isComplete ?? toDoItem.IsComplete);
+																																								 && toDoItem.IsComplete == (isComplete ?? toDoItem.IsComplete)
+																																								 && toDoItem.IsHidden == (isHidden ?? toDoItem.IsHidden);
 }
