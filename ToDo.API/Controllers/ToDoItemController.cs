@@ -40,16 +40,16 @@ public class ToDoItemController : ControllerBase
 	public IEnumerable<ToDoItem> GetAll([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetAll(_retrieveUserId());
 
 	[HttpGet("Today")]
-	public IEnumerable<ToDoItem> GetAllDueToday([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.Today.ToUniversalTime(), DateTime.UtcNow, isComplete);
+	public IEnumerable<ToDoItem> GetAllDueToday([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.UtcNow.Date, DateTime.UtcNow, isComplete);
 
 	[HttpGet("Tomorrow")]
-	public IEnumerable<ToDoItem> GetAllDueTomorrow([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.Today.ToUniversalTime().AddDays(1), DateTime.UtcNow.AddDays(1), isComplete);
+	public IEnumerable<ToDoItem> GetAllDueTomorrow([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.UtcNow.Date.AddDays(1), DateTime.UtcNow.AddDays(1), isComplete);
 
 	[HttpGet("Complete")]
 	public IEnumerable<ToDoItem> GetAllComplete([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetAllComplete(_retrieveUserId());
 
 	[HttpGet("Complete/Today")]
-	public IEnumerable<ToDoItem> GetAllCompleteToday([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetLastUpdatedBetween(_retrieveUserId(), DateTime.Today.ToUniversalTime(), DateTime.UtcNow, true);
+	public IEnumerable<ToDoItem> GetAllCompleteToday([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetLastUpdatedBetween(_retrieveUserId(), DateTime.UtcNow.Date, DateTime.UtcNow, true);
 
 	[HttpGet("Incomplete")]
 	public IEnumerable<ToDoItem> GetAllIncomplete([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetAllIncomplete(_retrieveUserId());
