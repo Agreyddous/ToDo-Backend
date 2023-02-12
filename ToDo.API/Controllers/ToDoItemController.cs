@@ -36,6 +36,12 @@ public class ToDoItemController : ControllerBase
 	[HttpPost("{id}/Undo")]
 	public ICommandResult Uncompleted([FromServices] ToDoItemHandler toDoItemHandler, Guid id) => toDoItemHandler.Handle(new UndoCompleteToDoItemCommand(id, _retrieveUserId()));
 
+	[HttpPost("{id}/Hide")]
+	public ICommandResult Hide([FromServices] ToDoItemHandler toDoItemHandler, Guid id) => toDoItemHandler.Handle(new HideToDoItemCommand(id, _retrieveUserId()));
+
+	[HttpPost("{id}/Show")]
+	public ICommandResult Show([FromServices] ToDoItemHandler toDoItemHandler, Guid id) => toDoItemHandler.Handle(new ShowToDoItemCommand(id, _retrieveUserId()));
+
 	[HttpGet("")]
 	public IEnumerable<ToDoItem> GetAll([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetAll(_retrieveUserId());
 
