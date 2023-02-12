@@ -34,6 +34,18 @@ public interface IToDoItemRepository
 	IEnumerable<ToDoItem> GetAll(string user);
 
 	/// <summary>
+	/// Returns all To-Do Items of a certain user that are not hidden
+	/// </summary>
+	/// <param name="user">User reference</param>
+	IEnumerable<ToDoItem> GetAllAvailable(string user);
+
+	/// <summary>
+	/// Returns all To-Do Items of a certain user that are hidden
+	/// </summary>
+	/// <param name="user">User reference</param>
+	IEnumerable<ToDoItem> GetAllHidden(string user);
+
+	/// <summary>
 	/// Returns all To-Do Items of a certain user that are due between the provided Start and End dates
 	/// </summary>
 	/// <param name="user">User reference</param>

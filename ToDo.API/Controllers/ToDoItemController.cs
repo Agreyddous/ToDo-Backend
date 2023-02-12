@@ -45,11 +45,17 @@ public class ToDoItemController : ControllerBase
 	[HttpGet("")]
 	public IEnumerable<ToDoItem> GetAll([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetAll(_retrieveUserId());
 
+	[HttpGet("Hidden")]
+	public IEnumerable<ToDoItem> GetAllHidden([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetAllHidden(_retrieveUserId());
+
+	[HttpGet("Available")]
+	public IEnumerable<ToDoItem> GetAllAvailable([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetAllAvailable(_retrieveUserId());
+
 	[HttpGet("Today")]
-	public IEnumerable<ToDoItem> GetAllDueToday([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.UtcNow.Date, DateTime.UtcNow, isComplete);
+	public IEnumerable<ToDoItem> GetAllDueToday([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete, bool? isHidden) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.UtcNow.Date, DateTime.UtcNow, isComplete, isHidden);
 
 	[HttpGet("Tomorrow")]
-	public IEnumerable<ToDoItem> GetAllDueTomorrow([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.UtcNow.Date.AddDays(1), DateTime.UtcNow.AddDays(1), isComplete);
+	public IEnumerable<ToDoItem> GetAllDueTomorrow([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete, bool? isHidden) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.UtcNow.Date.AddDays(1), DateTime.UtcNow.AddDays(1), isComplete, isHidden);
 
 	[HttpGet("Complete")]
 	public IEnumerable<ToDoItem> GetAllComplete([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetAllComplete(_retrieveUserId());

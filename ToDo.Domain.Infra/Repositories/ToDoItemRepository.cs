@@ -33,6 +33,14 @@ public class ToDoItemRepository : IToDoItemRepository
 														  .Where(ToDoItemQueries.GetAll(user))
 														  .OrderByDescending(ToDoItemOrdering.LastUpdate);
 
+	public IEnumerable<ToDoItem> GetAllAvailable(string user) => Table.AsNoTracking()
+																   .Where(ToDoItemQueries.GetAllAvailable(user))
+																   .OrderByDescending(ToDoItemOrdering.LastUpdate);
+
+	public IEnumerable<ToDoItem> GetAllHidden(string user) => Table.AsNoTracking()
+																.Where(ToDoItemQueries.GetAllHidden(user))
+																.OrderByDescending(ToDoItemOrdering.CreateDate);
+
 	public IEnumerable<ToDoItem> GetAllDueBetween(string user, DateTime startDate, DateTime endDate, bool? isComplete = null, bool? isHidden = null) => Table.AsNoTracking()
 																																						  .Where(ToDoItemQueries.GetAllDueBetween(user, startDate, endDate, isComplete, isHidden))
 																																						  .OrderByDescending(ToDoItemOrdering.LastUpdate);

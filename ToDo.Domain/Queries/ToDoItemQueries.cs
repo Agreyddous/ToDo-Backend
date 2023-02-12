@@ -22,6 +22,22 @@ public static class ToDoItemQueries
 	public static Expression<Func<ToDoItem, bool>> GetAll(string user) => toDoItem => toDoItem.User == user;
 
 	/// <summary>
+	/// Returns all To-Do Items of a certain user that are not hidden
+	/// </summary>
+	/// <param name="user">User reference</param>
+	/// <returns></returns>
+	public static Expression<Func<ToDoItem, bool>> GetAllAvailable(string user) => toDoItem => toDoItem.User == user
+																							&& !toDoItem.IsHidden;
+
+	/// <summary>
+	/// Returns all To-Do Items of a certain user that are hidden
+	/// </summary>
+	/// <param name="user">User reference</param>
+	/// <returns></returns>
+	public static Expression<Func<ToDoItem, bool>> GetAllHidden(string user) => toDoItem => toDoItem.User == user
+																						 && toDoItem.IsHidden;
+
+	/// <summary>
 	/// Returns all To-Do Items of a certain user that are due between the provided Start and End dates
 	/// </summary>
 	/// <param name="user">User reference</param>
