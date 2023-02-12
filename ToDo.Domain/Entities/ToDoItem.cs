@@ -13,6 +13,7 @@ public class ToDoItem : Entity
 		DueDate = dueDate;
 
 		IsComplete = false;
+		IsHidden = false;
 		CreatedAt = DateTime.UtcNow;
 		LastUpdatedAt = CreatedAt;
 	}
@@ -22,6 +23,7 @@ public class ToDoItem : Entity
 	public string Description { get; private set; }
 	public DateTime DueDate { get; private set; }
 	public bool IsComplete { get; private set; }
+	public bool IsHidden { get; private set; }
 	public DateTime CreatedAt { get; private set; }
 	public DateTime LastUpdatedAt { get; private set; }
 	public DateTime? CompletedAt { get; private set; }
@@ -45,6 +47,27 @@ public class ToDoItem : Entity
 		IsComplete = false;
 		CompletedAt = default;
 
+		_updated();
+	}
+
+	/// <summary>
+	/// If item is complete, updates it to be hidden
+	/// </summary>
+	public void Hide()
+	{
+		if (IsComplete)
+		{
+			IsHidden = true;
+			_updated();
+		}
+	}
+
+	/// <summary>
+	/// Updates a hidden to be shown
+	/// </summary>
+	public void Show()
+	{
+		IsHidden = false;
 		_updated();
 	}
 
