@@ -15,7 +15,9 @@ public class ToDoItemHandler :
 	IHandler<CreateToDoItemCommand>,
 	IHandler<UpdateToDoItemCommand>,
 	IHandler<CompleteToDoItemCommand>,
-	IHandler<UndoCompleteToDoItemCommand>
+	IHandler<UndoCompleteToDoItemCommand>,
+	IHandler<HideToDoItemCommand>,
+	IHandler<ShowToDoItemCommand>
 {
 	private readonly IToDoItemRepository _toDoItemRepository;
 
@@ -127,6 +129,60 @@ public class ToDoItemHandler :
 			if (toDoItem != null)
 			{
 				toDoItem.Undo();
+
+				_toDoItemRepository.Update(toDoItem);
+
+				result = new GenericCommandResult(success: true, data: toDoItem);
+			}
+
+			else
+				result = new GenericCommandResult(success: false, message: "To-Do Item not found");
+		}
+
+		return result;
+	}
+
+	public ICommandResult Handle(HideToDoItemCommand command)
+	{
+		command.Validate();
+		AddNotifications(command);
+
+		ICommandResult result = new GenericCommandResult(success: Valid, data: Notifications);
+
+		if (Valid)
+		{
+			ToDoItem? toDoItem = _toDoItemRepository.Get(command.User!, command.Id);
+
+			if (toDoItem != null)
+			{
+				toDoItem.Hide();
+
+				_toDoItemRepository.Update(toDoItem);
+
+				result = new GenericCommandResult(success: true, data: toDoItem);
+			}
+
+			else
+				result = new GenericCommandResult(success: false, message: "To-Do Item not found");
+		}
+
+		return result;
+	}
+
+	public ICommandResult Handle(ShowToDoItemCommand command)
+	{
+		command.Validate();
+		AddNotifications(command);
+
+		ICommandResult result = new GenericCommandResult(success: Valid, data: Notifications);
+
+		if (Valid)
+		{
+			ToDoItem? toDoItem = _toDoItemRepository.Get(command.User!, command.Id);
+
+			if (toDoItem != null)
+			{
+				toDoItem.Show();
 
 				_toDoItemRepository.Update(toDoItem);
 
