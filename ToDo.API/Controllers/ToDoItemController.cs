@@ -43,7 +43,7 @@ public class ToDoItemController : ControllerBase
 	public IEnumerable<ToDoItem> GetAllDueToday([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.Today.ToUniversalTime(), DateTime.UtcNow, isComplete);
 
 	[HttpGet("Tomorrow")]
-	public IEnumerable<ToDoItem> GetAllDueTomorrow([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete) => toDoItemRepository.GetLastUpdatedBetween(_retrieveUserId(), DateTime.Today.ToUniversalTime().AddDays(1), DateTime.UtcNow.AddDays(1), isComplete);
+	public IEnumerable<ToDoItem> GetAllDueTomorrow([FromServices] IToDoItemRepository toDoItemRepository, bool? isComplete) => toDoItemRepository.GetAllDueBetween(_retrieveUserId(), DateTime.Today.ToUniversalTime().AddDays(1), DateTime.UtcNow.AddDays(1), isComplete);
 
 	[HttpGet("Complete")]
 	public IEnumerable<ToDoItem> GetAllComplete([FromServices] IToDoItemRepository toDoItemRepository) => toDoItemRepository.GetAllComplete(_retrieveUserId());
