@@ -22,7 +22,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/ToDo-Backend
+        run: dotnet publish ./ToDo.API/ToDo.API.csproj -c Release -o ${{env.DOTNET_ROOT}}/ToDo-Backend
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
