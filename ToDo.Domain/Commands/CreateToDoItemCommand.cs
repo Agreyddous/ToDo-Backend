@@ -45,5 +45,5 @@ public class CreateToDoItemCommand : Notifiable, ICommand
 														  .HasMinLen(User, 6, nameof(User), "is invalid")
 														  .HasMinLen(Title, 3, nameof(Title), "is too short")
 														  .HasMinLen(Description, 3, nameof(Description), "is too short")
-														  .IsGreaterThan(DueDate ?? DateTime.MinValue, DateTime.UtcNow, nameof(DueDate), "can't be in the past"));
+														  .IsNotNull(DueDate, nameof(DueDate), "can't be null"));
 }

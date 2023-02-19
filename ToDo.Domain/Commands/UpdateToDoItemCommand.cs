@@ -48,6 +48,5 @@ public class UpdateToDoItemCommand : Notifiable, ICommand
 	public void Validate() => AddNotifications(new Contract().Requires()
 														  .HasMinLen(User, 6, nameof(User), "is invalid")
 														  .HasMinLen(Title, 3, nameof(Title), "is too short")
-														  .HasMinLen(Description, 3, nameof(Description), "is too short")
-														  .IsGreaterThan(DueDate ?? DateTime.MinValue, DateTime.UtcNow, nameof(DueDate), "can't be in the past"));
+														  .HasMinLen(Description, 3, nameof(Description), "is too short"));
 }
